@@ -20,7 +20,7 @@ then
 
 	# update npm version 
 	# commit also tagged here
-	npm version $version --message "Release version $version"
+	npm version $version --message "Release version $version" --allow-same-version
 
 	# push to repo
 	git push origin master --tags
