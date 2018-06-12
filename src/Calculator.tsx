@@ -21,9 +21,24 @@ enum StackKindEnum {
 }
 
 export interface CalculatorProps extends CalculatorCommonProps {
+  /**
+   * Show accept button after calculate.
+   */
   hasAcceptButton?: boolean
+
+  /**
+   * Container style.
+   */
   style?: ViewStyle
+
+  /**
+   * Calculate button click event.
+   */
   onCalc?: (value: number, text: string) => void
+
+  /**
+   * Accept button click event.
+   */
   onAccept?: (value: number, text: string) => void
 }
 
