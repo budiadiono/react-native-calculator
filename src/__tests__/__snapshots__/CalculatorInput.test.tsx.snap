@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders calculator input correctly 1`] = `
+<Component
+  onLayout={[Function]}
+>
+  <Component
+    style={
+      Array [
+        Object {
+          "borderBottomColor": "grey",
+          "borderBottomWidth": 1,
+          "height": 24,
+          "margin": 10,
+        },
+        undefined,
+      ]
+    }
+  >
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[Function]}
+      style={
+        Object {
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontSize": 16,
+            },
+            undefined,
+          ]
+        }
+      >
+        0
+      </Text>
+    </TouchableOpacity>
+  </Component>
+  <Component
+    hardwareAccelerated={false}
+    onRequestClose={[Function]}
+    transparent={true}
+    visible={false}
+  >
+    <TouchableWithoutFeedback
+      onPress={[Function]}
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <Component
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "rgba(0,0,0,0.3)",
+              "flex": 1,
+              "justifyContent": "flex-end",
+            },
+            undefined,
+          ]
+        }
+      >
+        <Calculator
+          acceptButtonBackgroundColor="#14CC60"
+          acceptButtonColor="#ffffff"
+          actionButtonBackgroundColor="#e7e5e3"
+          actionButtonColor="#000000"
+          borderColor="#52525B"
+          calcButtonBackgroundColor="#ff8d00"
+          calcButtonColor="#ffffff"
+          decimalSeparator="."
+          displayBackgroundColor="#ffffff"
+          displayColor="#000000"
+          fontSize={18}
+          hasAcceptButton={true}
+          height={889.3333333333333}
+          numericButtonBackgroundColor="#ffffff"
+          numericButtonColor="#aaaaaa"
+          onAccept={[Function]}
+          thousandSeparator=","
+          value={0}
+          width={750}
+        />
+      </Component>
+    </TouchableWithoutFeedback>
+  </Component>
+</Component>
+`;

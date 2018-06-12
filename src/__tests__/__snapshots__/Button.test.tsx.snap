@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders button correctly 1`] = `
+<TouchableOpacity
+  activeOpacity={0.2}
+  onPressIn={[MockFunction]}
+  style={
+    Array [
+      undefined,
+    ]
+  }
+>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      foo
+    </Text>
+  </Component>
+</TouchableOpacity>
+`;
+
+exports[`renders button correctly 2`] = `
+<TouchableOpacity
+  activeOpacity={0.2}
+  onPressIn={[MockFunction]}
+  style={
+    Array [
+      Object {
+        "borderBottomWidth": 1,
+        "borderRightWidth": 1,
+        "borderStyle": "solid",
+      },
+    ]
+  }
+>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#fff",
+          "fontSize": 1,
+        }
+      }
+    >
+      bar
+    </Text>
+  </Component>
+</TouchableOpacity>
+`;

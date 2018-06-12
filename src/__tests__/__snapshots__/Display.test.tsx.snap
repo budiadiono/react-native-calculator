@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders display correctly 1`] = `
+<Component>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "color": "transparent",
+        },
+        Object {
+          "fontSize": 99.5,
+        },
+      ]
+    }
+  >
+    1.000
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "bottom": 0,
+          "flex": 1,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        undefined,
+        Object {
+          "color": "transparent",
+          "fontSize": 99.5,
+          "height": 100,
+          "top": 49.75,
+        },
+      ]
+    }
+  >
+    1.000
+  </Text>
+</Component>
+`;

@@ -1,0 +1,86 @@
+{
+  "name": "react-native-calculator",
+  "version": "0.0.1",
+  "description": "React Native Calculator and Calculator Input Component",
+  "main": "dist/index.js",
+  "typings": "typings/index.d.ts",
+  "files": [
+    "dist",
+    "typings"
+  ],
+  "scripts": {
+    "test": "jest",
+    "compile": "tsc -d --declarationDir ./typings",
+    "build": "rm -rf dist && rm -rf typings && npm run compile && prettier ./typings/**/*.d.ts --write"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "calculator",
+    "component",
+    "input"
+  ],
+  "author": "Budi Adiono",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/enzyme": "^3.1.10",
+    "@types/enzyme-adapter-react-16": "^1.0.2",
+    "@types/jest": "^23.0.0",
+    "@types/react": "^16.3.16",
+    "@types/react-native": "^0.55.16",
+    "babel-preset-expo": "^4.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
+    "jest": "^23.1.0",
+    "prettier": "^1.13.4",
+    "react": "16.3.1",
+    "react-dom": "16.3.1",
+    "react-native": "^0.55.4",
+    "ts-jest": "^22.4.6",
+    "tslib": "^1.9.2",
+    "tslint": "^5.10.0",
+    "tslint-config-prettier": "^1.13.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^2.9.1"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "useBabelrc": true
+      }
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "preset": "react-native",
+    "setupFiles": [
+      "<rootDir>/src/__tests__/__setup__/enzyme.js"
+    ],
+    "testMatch": [
+      "<rootDir>/src/__tests__/**/?(*.)(spec|test).[tj]s?(x)"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/node_modules"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  }
+}
