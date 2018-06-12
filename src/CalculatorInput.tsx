@@ -15,7 +15,6 @@ import { CalculatorCommonProps, DefaultCommonProps } from './interface'
 import { formatNumber } from './utils'
 
 export interface CalculatorInputProps extends CalculatorCommonProps {
-
   /**
    * Value change event.
    */
@@ -123,11 +122,12 @@ export class CalculatorInput extends React.Component<
             <Calculator
               hasAcceptButton
               onAccept={(value, text) => {
-                this.setState({ value, text })
-                this.calculatorModalToggle()
-                if (onChange) {
-                  onChange(value, text)
-                }
+                this.setState({ value, text }, () => {
+                  if (onChange) {
+                    onChange(value, text)
+                  }
+                  this.calculatorModalToggle()
+                })
               }}
               {...this.props}
               value={this.state.value}
