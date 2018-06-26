@@ -9,7 +9,8 @@
     "typings"
   ],
   "scripts": {
-    "test": "jest",
+    "lint": "tslint 'src/**/*.ts{,x}'",
+    "test": "npm run lint && jest",
     "compile": "tsc -d --declarationDir ./typings",
     "build": "rm -rf dist && rm -rf typings && npm run compile && prettier ./typings/**/*.d.ts --write"
   },
