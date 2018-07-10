@@ -14,6 +14,18 @@ export default class CalculatorInputScreen extends React.Component {
           fieldTextStyle={{ fontSize: 24 }}
           fieldContainerStyle={{ height: 36 }}
         />
+
+        <CalculatorInput
+          prefix={'$'}
+          fieldTextStyle={{ fontSize: 24 }}
+          fieldContainerStyle={{ height: 36 }}
+        />
+
+        <CalculatorInput
+          suffix={'%'}
+          fieldTextStyle={{ fontSize: 24 }}
+          fieldContainerStyle={{ height: 36 }}
+        />
       </View>
     )
   }

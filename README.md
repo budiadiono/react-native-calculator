@@ -96,6 +96,8 @@ All props in [common props](#common-props) and...
 | fieldContainerStyle | ViewStyle                                   |               | Text field container style. |
 | fieldTextStyle      | TextStyle                                   |               | Text style.                 |
 | onChange            | `(value : number , text : string ) => void` |               | Value change event.         |
+| prefix              | string                                      |               | Prefix.                     |
+| suffix              | string                                      |               | Suffix.                     |
 
 ## Common Props
 

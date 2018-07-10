@@ -10,7 +10,7 @@ import {
   View,
   ViewStyle
 } from 'react-native'
-import { Calculator, CalculatorProps } from './Calculator'
+import { Calculator } from './Calculator'
 import { CalculatorCommonProps, DefaultCommonProps } from './interface'
 import { formatNumber } from './utils'
 
@@ -39,6 +39,16 @@ export interface CalculatorInputProps extends CalculatorCommonProps {
    * Text style.
    */
   fieldTextStyle?: TextStyle
+
+  /**
+   * Prefix text.
+   */
+  prefix?: string
+
+  /**
+   * Suffix text.
+   */
+  suffix?: string
 }
 
 interface State {
@@ -51,7 +61,11 @@ export class CalculatorInput extends React.Component<
   CalculatorInputProps,
   State
 > {
-  static defaultProps: Partial<CalculatorProps> = DefaultCommonProps
+  static defaultProps: Partial<CalculatorInputProps> = {
+    ...DefaultCommonProps,
+    suffix: '',
+    prefix: ''
+  }
 
   constructor(props: CalculatorInputProps) {
     super(props)
@@ -86,7 +100,7 @@ export class CalculatorInput extends React.Component<
   }
 
   renderTextField() {
-    const { fieldContainerStyle, fieldTextStyle } = this.props
+    const { fieldContainerStyle, fieldTextStyle, prefix, suffix } = this.props
 
     return (
       <View style={[styles.container, fieldContainerStyle]}>
@@ -94,7 +108,9 @@ export class CalculatorInput extends React.Component<
           onPress={this.calculatorModalToggle}
           style={styles.innerContainer}
         >
-          <Text style={[styles.text, fieldTextStyle]}>{this.state.text}</Text>
+          <Text style={[styles.text, fieldTextStyle]}>
+            {prefix + this.state.text + suffix}
+          </Text>
         </TouchableOpacity>
       </View>
     )
