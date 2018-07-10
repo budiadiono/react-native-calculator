@@ -3,6 +3,11 @@
   "version": "0.0.2",
   "description": "React Native Calculator and Calculator Input Component",
   "main": "dist/index.js",
+  "author": "Budi Adiono <budiadiono@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/budiadiono/react-native-calculator"
+  },
   "typings": "typings/index.d.ts",
   "files": [
     "dist",
@@ -21,7 +26,6 @@
     "component",
     "input"
   ],
-  "author": "Budi Adiono",
   "license": "MIT",
   "devDependencies": {
     "@types/enzyme": "^3.1.10",
