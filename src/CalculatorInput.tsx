@@ -16,6 +16,16 @@ import { formatNumber } from './utils'
 
 export interface CalculatorInputProps extends CalculatorCommonProps {
   /**
+   * Called asynchronously before changes applied. Resolve with true if changes are accepted.
+   */
+  onBeforeChangeAsync?: (value: number, text: string) => Promise<boolean>
+
+  /**
+   * Called before changes applied. Return true if changes are accepted.
+   */
+  onBeforeChange?: (value: number, text: string) => boolean
+
+  /**
    * Value change event.
    */
   onChange?: (value: number, text: string) => void
@@ -117,7 +127,13 @@ export class CalculatorInput extends React.Component<
   }
 
   renderCalulatorModal() {
-    const { modalAnimationType, modalBackdropStyle, onChange } = this.props
+    const {
+      modalAnimationType,
+      modalBackdropStyle,
+      onBeforeChange,
+      onBeforeChangeAsync,
+      onChange
+    } = this.props
     const dimension = Dimensions.get('window')
 
     const height = this.props.height || dimension.height - dimension.height / 3
@@ -137,7 +153,19 @@ export class CalculatorInput extends React.Component<
           <View style={[styles.backdrop, modalBackdropStyle]}>
             <Calculator
               hasAcceptButton
-              onAccept={(value, text) => {
+              onAccept={async (value, text) => {
+                if (onBeforeChange) {
+                  if (!onBeforeChange(value, text)) {
+                    return
+                  }
+                }
+
+                if (onBeforeChangeAsync) {
+                  if (!(await onBeforeChangeAsync(value, text))) {
+                    return
+                  }
+                }
+
                 this.setState({ value, text }, () => {
                   if (onChange) {
                     onChange(value, text)

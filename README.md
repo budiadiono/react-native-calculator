@@ -37,7 +37,6 @@ import { View } from 'react-native'
 import { Calculator } from 'react-native-calculator'
 
 export default class App extends React.Component {
-
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -52,12 +51,14 @@ export default class App extends React.Component {
 
 All props in [common props](#common-props) and...
 
-| Prop Name       | Data Type                                   | Default Value | Description                         |
-| --------------- | ------------------------------------------- | ------------- | ----------------------------------- |
-| hasAcceptButton | boolean                                     | false         | Show accept button after calculate. |
-| style           | ViewStyle                                   |               | Container style.                    |
-| onCalc          | `(value : number , text : string ) => void` |               | Calculate button click event.       |
-| onAccept        | `(value : number , text : string ) => void` |               | Accept button click event.          |
+| Prop Name           | Data Type                                               | Default Value | Description                                                                              |
+| ------------------- | ------------------------------------------------------- | ------------- | ---------------------------------------------------------------------------------------- |
+| hasAcceptButton     | boolean                                                 | false         | Show accept button after calculate.                                                      |
+| style               | ViewStyle                                               |               | Container style.                                                                         |
+| onCalc              | `(value : number , text : string ) => void`             |               | Calculate button click event.                                                            |
+| onAccept            | `(value : number , text : string ) => void`             |               | Accept button click event.                                                               |
+| onBeforeChange      | `(value : number , text : string ) => boolean`          |               | Called before changes applied. Return true if changes are accepted.                      |
+| onBeforeChangeAsync | `(value : number , text : string ) => Promise<boolean>` |               | Called asynchronously before changes applied. Resolve with true if changes are accepted. |
 
 ## Calculator Input Component
 
@@ -83,7 +84,6 @@ export default class App extends React.Component {
   }
 }
 ```
-
 
 ### Props
 
