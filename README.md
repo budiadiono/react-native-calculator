@@ -51,14 +51,12 @@ export default class App extends React.Component {
 
 All props in [common props](#common-props) and...
 
-| Prop Name           | Data Type                                               | Default Value | Description                                                                              |
-| ------------------- | ------------------------------------------------------- | ------------- | ---------------------------------------------------------------------------------------- |
-| hasAcceptButton     | boolean                                                 | false         | Show accept button after calculate.                                                      |
-| style               | ViewStyle                                               |               | Container style.                                                                         |
-| onCalc              | `(value : number , text : string ) => void`             |               | Calculate button click event.                                                            |
-| onAccept            | `(value : number , text : string ) => void`             |               | Accept button click event.                                                               |
-| onBeforeChange      | `(value : number , text : string ) => boolean`          |               | Called before changes applied. Return true if changes are accepted.                      |
-| onBeforeChangeAsync | `(value : number , text : string ) => Promise<boolean>` |               | Called asynchronously before changes applied. Resolve with true if changes are accepted. |
+| Prop Name       | Data Type                                   | Default Value | Description                         |
+| --------------- | ------------------------------------------- | ------------- | ----------------------------------- |
+| hasAcceptButton | boolean                                     | false         | Show accept button after calculate. |
+| style           | ViewStyle                                   |               | Container style.                    |
+| onCalc          | `(value : number , text : string ) => void` |               | Calculate button click event.       |
+| onAccept        | `(value : number , text : string ) => void` |               | Accept button click event.          |
 
 ## Calculator Input Component
 
@@ -89,15 +87,17 @@ export default class App extends React.Component {
 
 All props in [common props](#common-props) and...
 
-| Prop Name           | Data Type                                   | Default Value | Description                 |
-| ------------------- | ------------------------------------------- | ------------- | --------------------------- |
-| modalAnimationType  | 'none'                                      | 'slide'       | 'fade'                      | slide | Modal animation type. |
-| modalBackdropStyle  | ViewStyle                                   |               | Style of modal backdrop.    |
-| fieldContainerStyle | ViewStyle                                   |               | Text field container style. |
-| fieldTextStyle      | TextStyle                                   |               | Text style.                 |
-| onChange            | `(value : number , text : string ) => void` |               | Value change event.         |
-| prefix              | string                                      |               | Prefix.                     |
-| suffix              | string                                      |               | Suffix.                     |
+| Prop Name           | Data Type                                               | Default Value | Description                                                                              |
+| ------------------- | ------------------------------------------------------- | ------------- | ---------------------------------------------------------------------------------------- |
+| modalAnimationType  | 'none'                                                  | 'slide'       | 'fade'                                                                                   | slide | Modal animation type. |
+| modalBackdropStyle  | ViewStyle                                               |               | Style of modal backdrop.                                                                 |
+| fieldContainerStyle | ViewStyle                                               |               | Text field container style.                                                              |
+| fieldTextStyle      | TextStyle                                               |               | Text style.                                                                              |
+| onChange            | `(value : number , text : string ) => void`             |               | Value change event.                                                                      |
+| prefix              | string                                                  |               | Prefix.                                                                                  |
+| suffix              | string                                                  |               | Suffix.                                                                                  |
+| onBeforeChange      | `(value : number , text : string ) => boolean`          |               | Called before changes applied. Return true if changes are accepted.                      |
+| onBeforeChangeAsync | `(value : number , text : string ) => Promise<boolean>` |               | Called asynchronously before changes applied. Resolve with true if changes are accepted. |
 
 ## Common Props
 
