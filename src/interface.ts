@@ -93,6 +93,11 @@ export interface CalculatorCommonProps {
    * Initial value.
    */
   value?: number
+
+  /**
+   * Text change event.
+   */
+  onTextChange?: (text: string) => void
 }
 
 export const DefaultCommonProps: Partial<CalculatorCommonProps> = {

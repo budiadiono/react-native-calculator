@@ -101,27 +101,28 @@ All props in [common props](#common-props) and...
 
 ## Common Props
 
-| Prop Name                    | Data Type | Default Value | Description                        |
-| ---------------------------- | --------- | ------------- | ---------------------------------- |
-| decimalSeparator             | string    | .             | Decimal separator sign.            |
-| thousandSeparator            | string    | ,             | Thousand separator sign.           |
-| numericButtonBackgroundColor | string    | #ffffff       | Numeric button background color.   |
-| numericButtonColor           | string    | #aaaaaa       | Numeric text button color.         |
-| actionButtonBackgroundColor  | string    | #e7e5e3       | Action button background color.    |
-| actionButtonColor            | string    | #000000       | Action text button color.          |
-| calcButtonBackgroundColor    | string    | #ff8d00       | Calculate button background color. |
-| calcButtonColor              | string    | #ffffff       | Calculator text button color.      |
-| acceptButtonBackgroundColor  | string    | #14CC60       | Accept button background color.    |
-| acceptButtonColor            | string    | #ffffff       | Accept text button color.          |
-| displayBackgroundColor       | string    | #ffffff       | Digit display background color.    |
-| displayColor                 | string    | #000000       | Digit display text color.          |
-| borderColor                  | string    | #52525B       | Border color.                      |
-| fontSize                     | number    | 18            | Button text font size.             |
-| value                        | number    | 0             | Initial value.                     |
-| width                        | number    | (auto)        | Calculator component width.        |
-| height                       | number    | (auto)        | Calculator component height.       |
-| displayHeight                | number    | (auto)        | Digit display container height.    |
-| keyboardHeight               | number    | (auto)        | Keyboard container height.         |
+| Prop Name                    | Data Type              | Default Value | Description                        |
+| ---------------------------- | ---------------------- | ------------- | ---------------------------------- |
+| decimalSeparator             | string                 | .             | Decimal separator sign.            |
+| thousandSeparator            | string                 | ,             | Thousand separator sign.           |
+| numericButtonBackgroundColor | string                 | #ffffff       | Numeric button background color.   |
+| numericButtonColor           | string                 | #aaaaaa       | Numeric text button color.         |
+| actionButtonBackgroundColor  | string                 | #e7e5e3       | Action button background color.    |
+| actionButtonColor            | string                 | #000000       | Action text button color.          |
+| calcButtonBackgroundColor    | string                 | #ff8d00       | Calculate button background color. |
+| calcButtonColor              | string                 | #ffffff       | Calculator text button color.      |
+| acceptButtonBackgroundColor  | string                 | #14CC60       | Accept button background color.    |
+| acceptButtonColor            | string                 | #ffffff       | Accept text button color.          |
+| displayBackgroundColor       | string                 | #ffffff       | Digit display background color.    |
+| displayColor                 | string                 | #000000       | Digit display text color.          |
+| borderColor                  | string                 | #52525B       | Border color.                      |
+| fontSize                     | number                 | 18            | Button text font size.             |
+| value                        | number                 | 0             | Initial value.                     |
+| width                        | number                 | (auto)        | Calculator component width.        |
+| height                       | number                 | (auto)        | Calculator component height.       |
+| displayHeight                | number                 | (auto)        | Digit display container height.    |
+| keyboardHeight               | number                 | (auto)        | Keyboard container height.         |
+| onTextChange                 | (text: string) => void |               | Text change event.                 |
 
 ## License
 

@@ -493,7 +493,13 @@ export class Calculator extends React.Component<CalculatorProps, State> {
     if (!done) {
       done = this.stacks.length === 1
     }
+    
     this.setState({ text, done })
+
+    const { onTextChange } = this.props
+    if (onTextChange) {
+      onTextChange(text)
+    }
   }
 
   format(num: number) {
