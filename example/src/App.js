@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from 'react-navigation'
 import FullScreenCalculatorScreen from './FullScreenCalculatorScreen'
 import FixedSizeCalculatorScreen from './FixedSizeCalculatorScreen'
 import CalculatorInputScreen from './CalculatorInputScreen'
+import HideDisplayCalculatorScreen from './HideDisplayCalculatorScreen'
 
 export default class App extends React.Component {
   render() {
@@ -21,7 +22,8 @@ const MainNav = createBottomTabNavigator(
   {
     FullScreen: FullScreenCalculatorScreen,
     FixedSize: FixedSizeCalculatorScreen,
-    CalculatorInput: CalculatorInputScreen
+    HidDisplay: HideDisplayCalculatorScreen,
+    CalculatorInput: CalculatorInputScreen,    
   },
   {
     tabBarOptions: {

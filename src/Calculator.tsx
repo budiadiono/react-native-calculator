@@ -40,6 +40,11 @@ export interface CalculatorProps extends CalculatorCommonProps {
    * Accept button click event.
    */
   onAccept?: (value: number, text: string) => void
+
+  /**
+   * Hide display text field.
+   */
+  hideDisplay?: boolean
 }
 
 interface State {
@@ -76,7 +81,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
   }
 
   getButtonSize(window: LayoutRectangle): ButtonSize {
-    const { keyboardHeight } = this.props
+    const { keyboardHeight, hideDisplay } = this.props
     let { displayHeight, height, width } = this.props
     if (!height) {
       height = window.height - window.y
@@ -92,15 +97,19 @@ export class Calculator extends React.Component<CalculatorProps, State> {
     if (keyboardHeight) {
       height = keyboardHeight / 5
     } else {
-      if (!displayHeight) {
-        height = (height as number) / 6
+      if (displayHeight || hideDisplay) {
+        height = ((height as number) - (displayHeight || 0)) / 5
       } else {
-        height = ((height as number) - displayHeight) / 5
+        height = (height as number) / 6
       }
     }
 
     if (!displayHeight) {
-      displayHeight = keyboardHeight ? containerHeight - keyboardHeight : height
+      displayHeight = hideDisplay
+        ? 0
+        : keyboardHeight
+          ? containerHeight - keyboardHeight
+          : height
     }
 
     return {
@@ -146,7 +155,8 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       borderColor,
       fontSize,
       width,
-      hasAcceptButton
+      hasAcceptButton,
+      hideDisplay
     } = this.props
 
     const done = this.state.done && hasAcceptButton
@@ -157,28 +167,37 @@ export class Calculator extends React.Component<CalculatorProps, State> {
 
     return (
       <View>
+        {!hideDisplay && (
+          <View
+            style={[
+              Styles.displayContainer,
+              {
+                backgroundColor: displayBackgroundColor,
+                borderColor,
+                width,
+                height: btnSize.displayHeight
+              }
+            ]}
+          >
+            <Display
+              height={btnSize.displayHeight}
+              width={btnSize.width * 4 - 20}
+              value={text}
+              ref={e => {
+                this.display = e as Display
+              }}
+              style={{ color: displayColor }}
+            />
+          </View>
+        )}
         <View
           style={[
-            Styles.displayContainer,
-            {
-              backgroundColor: displayBackgroundColor,
-              borderColor,
-              width,
-              height: btnSize.displayHeight
-            }
+            Styles.row,
+            hideDisplay
+              ? { borderTopWidth: 1, borderTopColor: borderColor }
+              : undefined
           ]}
         >
-          <Display
-            height={btnSize.displayHeight}
-            width={btnSize.width * 4 - 20}
-            value={text}
-            ref={e => {
-              this.display = e as Display
-            }}
-            style={{ color: displayColor }}
-          />
-        </View>
-        <View style={Styles.row}>
           {this.renderActionButton(btnSize, 'C', ActionEnum.CLEAR, true)}
           {this.renderActionButton(btnSize, '/', ActionEnum.DIVIDE)}
           {this.renderActionButton(btnSize, '*', ActionEnum.MULTIPLY)}
@@ -493,7 +512,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
     if (!done) {
       done = this.stacks.length === 1
     }
-    
+
     this.setState({ text, done })
 
     const { onTextChange } = this.props

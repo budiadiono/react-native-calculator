@@ -57,6 +57,7 @@ All props in [common props](#common-props) and...
 | style           | ViewStyle                                   |               | Container style.                    |
 | onCalc          | `(value : number , text : string ) => void` |               | Calculate button click event.       |
 | onAccept        | `(value : number , text : string ) => void` |               | Accept button click event.          |
+| hideDisplay     | boolean                                     | false         | Hide display text field.            |
 
 ## Calculator Input Component
 
