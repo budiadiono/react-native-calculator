@@ -2,6 +2,7 @@ import * as React from 'react'
 import {
   findNodeHandle,
   NativeModules,
+  Platform,
   StyleSheet,
   Text,
   TextStyle,
@@ -44,7 +45,7 @@ export class Display extends React.Component<DisplayProps, State> {
   }
 
   tryNewSize(force?: boolean) {
-    if (!this._mounted) {
+    if (!this._mounted || Platform.OS === 'ios') {
       return
     }
 
@@ -57,7 +58,7 @@ export class Display extends React.Component<DisplayProps, State> {
       () => {
         throw new Error('error')
       },
-      (x: number, y: number, w: number, h: number) => {
+      (_x: number, _y: number, w: number, h: number) => {
         this.isSizeOk(w, h)
       }
     )
@@ -67,7 +68,7 @@ export class Display extends React.Component<DisplayProps, State> {
     if (!this._mounted) {
       return
     }
-    
+
     const { complete } = this.state
     let { size } = this.state
     const { height, width, value } = this.props
@@ -104,12 +105,44 @@ export class Display extends React.Component<DisplayProps, State> {
   }
 
   componentDidUpdate(newProps: DisplayProps) {
+    if (Platform.OS === 'ios') {
+      return
+    }
+
     if (this.props.value !== newProps.value) {
       this.setState({ complete: false }, this.tryNewSize)
     }
   }
 
   render() {
+    return Platform.OS === 'ios' ? this.renderIOS() : this.renderAndroid()
+  }
+
+  renderIOS() {
+    const { height, style, value } = this.props
+    return (
+      <View>
+        <Text
+          adjustsFontSizeToFit={true}
+          numberOfLines={1}
+          style={[
+            styles.displayText,
+            style,
+            {
+              fontSize: height,
+              height,
+              lineHeight: height,
+              color: style.color
+            }
+          ]}
+        >
+          {value}
+        </Text>
+      </View>
+    )
+  }
+
+  renderAndroid() {
     const { size, fixSize, fixValue, fontHeight, ready } = this.state
     const { value, height, style } = this.props
 
