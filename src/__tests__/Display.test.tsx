@@ -8,6 +8,13 @@ NativeModules.UIManager = {
 }
 
 it('renders display correctly', () => {
-  const wrapper = shallow(<Display width={400} height={100} value={'1.000'} />)
+  const wrapper = shallow(
+    <Display
+      width={400}
+      height={100}
+      value={'1.000'}
+      style={{ color: '#000' }}
+    />
+  )
   expect(wrapper).toMatchSnapshot()
 })

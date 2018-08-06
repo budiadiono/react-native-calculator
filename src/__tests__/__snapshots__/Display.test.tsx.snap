@@ -4,26 +4,10 @@ exports[`renders display correctly 1`] = `
 <Component>
   <Text
     accessible={true}
+    adjustsFontSizeToFit={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
-    style={
-      Array [
-        Object {
-          "backgroundColor": "transparent",
-          "color": "transparent",
-        },
-        Object {
-          "fontSize": 99.5,
-        },
-      ]
-    }
-  >
-    1.000
-  </Text>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
+    numberOfLines={1}
     style={
       Array [
         Object {
@@ -35,12 +19,14 @@ exports[`renders display correctly 1`] = `
           "right": 0,
           "top": 0,
         },
-        undefined,
         Object {
-          "color": "transparent",
-          "fontSize": 99.5,
+          "color": "#000",
+        },
+        Object {
+          "color": "#000",
+          "fontSize": 100,
           "height": 100,
-          "top": 49.75,
+          "lineHeight": 100,
         },
       ]
     }
