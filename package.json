@@ -1,6 +1,6 @@
 {
   "name": "react-native-calculator",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "React Native Calculator and Calculator Input Component",
   "main": "dist/index.js",
   "author": "Budi Adiono <budiadiono@gmail.com>",
