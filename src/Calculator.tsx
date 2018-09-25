@@ -457,15 +457,15 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       }
     ]
 
-    if (onCalc) {
-      onCalc(value, text)
-    }
+    this.setText(true, () => {
+      if (onCalc) {
+        onCalc(value, text)
+      }
 
-    if (hasAcceptButton && onAccept && this.state.done) {
-      onAccept(value, text)
-    }
-
-    this.setText(true)
+      if (hasAcceptButton && onAccept && this.state.done) {
+        onAccept(value, text)
+      }
+    })
   }
 
   popStack() {
@@ -513,18 +513,22 @@ export class Calculator extends React.Component<CalculatorProps, State> {
     this.setText()
   }
 
-  setText(done: boolean = false) {
+  setText(done: boolean = false, callback?: () => void) {
     const text = this.stacks.map(s => s.text).join(' ')
     if (!done) {
       done = this.stacks.length === 1
     }
 
-    this.setState({ text, done })
+    this.setState({ text, done }, () => {
+      const { onTextChange } = this.props
+      if (onTextChange) {
+        onTextChange(text)
+      }
 
-    const { onTextChange } = this.props
-    if (onTextChange) {
-      onTextChange(text)
-    }
+      if (callback) {
+        callback()
+      }
+    })
   }
 
   format(num: number) {
