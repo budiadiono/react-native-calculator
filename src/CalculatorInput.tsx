@@ -2,6 +2,7 @@ import * as React from 'react'
 import {
   Dimensions,
   Modal,
+  StyleProp,
   StyleSheet,
   Text,
   TextStyle,
@@ -38,17 +39,17 @@ export interface CalculatorInputProps extends CalculatorCommonProps {
   /**
    * Style of modal backdrop.
    */
-  modalBackdropStyle?: ViewStyle
+  modalBackdropStyle?: StyleProp<ViewStyle>
 
   /**
    * Text field container style.
    */
-  fieldContainerStyle?: ViewStyle
+  fieldContainerStyle?: StyleProp<ViewStyle>
 
   /**
    * Text style.
    */
-  fieldTextStyle?: TextStyle
+  fieldTextStyle?: StyleProp<TextStyle>
 
   /**
    * Prefix text.

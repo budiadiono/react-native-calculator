@@ -3,6 +3,7 @@ import {
   findNodeHandle,
   NativeModules,
   Platform,
+  StyleProp,
   StyleSheet,
   Text,
   TextStyle,
@@ -24,7 +25,7 @@ export interface DisplayProps {
   height: number
   width: number
   value: string
-  style: TextStyle
+  style: StyleProp<TextStyle>
 }
 
 export class Display extends React.Component<DisplayProps, State> {
@@ -132,6 +133,7 @@ export class Display extends React.Component<DisplayProps, State> {
               fontSize: height,
               height,
               lineHeight: height,
+              // @ts-ignore
               color: style.color
             }
           ]}
@@ -163,6 +165,7 @@ export class Display extends React.Component<DisplayProps, State> {
               fontSize: fixSize,
               height,
               top: (height - fontHeight) / 2,
+              // @ts-ignore
               color: ready ? style.color : 'transparent'
             }
           ]}

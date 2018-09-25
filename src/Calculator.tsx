@@ -1,5 +1,11 @@
 import * as React from 'react'
-import { LayoutRectangle, StyleSheet, View, ViewStyle } from 'react-native'
+import {
+  LayoutRectangle,
+  StyleProp,
+  StyleSheet,
+  View,
+  ViewStyle
+} from 'react-native'
 import { Button } from './Button'
 import { Display } from './Display'
 import { CalculatorCommonProps, DefaultCommonProps } from './interface'
@@ -29,7 +35,7 @@ export interface CalculatorProps extends CalculatorCommonProps {
   /**
    * Container style.
    */
-  style?: ViewStyle
+  style?: StyleProp<ViewStyle>
 
   /**
    * Calculate button click event.
