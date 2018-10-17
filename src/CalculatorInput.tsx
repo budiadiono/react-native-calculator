@@ -60,12 +60,28 @@ export interface CalculatorInputProps extends CalculatorCommonProps {
    * Suffix text.
    */
   suffix?: string
+
+  /**
+   * Disable editor.
+   */
+  disabled?: boolean
+
+  /**
+   * Text field container style.
+   */
+  fieldDisabledContainerStyle?: StyleProp<ViewStyle>
+
+  /**
+   * Text style.
+   */
+  fieldDisabledTextStyle?: StyleProp<TextStyle>
 }
 
 interface State {
   modalVisible: boolean
   value: number
   text: string
+  disabled: boolean
 }
 
 function propsToState(props: CalculatorInputProps): Partial<State> {
@@ -76,7 +92,8 @@ function propsToState(props: CalculatorInputProps): Partial<State> {
       value,
       props.decimalSeparator as string,
       props.thousandSeparator as string
-    )
+    ),
+    disabled: props.disabled
   }
 }
 
@@ -120,24 +137,52 @@ export class CalculatorInput extends React.Component<
         }}
       >
         {this.renderTextField()}
-        {this.renderCalulatorModal()}
+        {!this.state.disabled && this.renderCalulatorModal()}
       </View>
     )
   }
 
   renderTextField() {
-    const { fieldContainerStyle, fieldTextStyle, prefix, suffix } = this.props
+    const {
+      fieldContainerStyle,
+      fieldTextStyle,
+      fieldDisabledContainerStyle,
+      fieldDisabledTextStyle,
+      prefix,
+      suffix
+    } = this.props
+    const { disabled, text } = this.state
+
+    const renderText = () => (
+      <Text
+        style={[
+          styles.text,
+          fieldTextStyle,
+          disabled ? fieldDisabledTextStyle : {}
+        ]}
+      >
+        {prefix + text + suffix}
+      </Text>
+    )
 
     return (
-      <View style={[styles.container, fieldContainerStyle]}>
-        <TouchableOpacity
-          onPress={this.calculatorModalToggle}
-          style={styles.innerContainer}
-        >
-          <Text style={[styles.text, fieldTextStyle]}>
-            {prefix + this.state.text + suffix}
-          </Text>
-        </TouchableOpacity>
+      <View
+        style={[
+          styles.container,
+          fieldContainerStyle,
+          disabled ? fieldDisabledContainerStyle : {}
+        ]}
+      >
+        {disabled ? (
+          <View style={styles.innerContainer}>{renderText()}</View>
+        ) : (
+          <TouchableOpacity
+            onPress={this.calculatorModalToggle}
+            style={styles.innerContainer}
+          >
+            {renderText()}
+          </TouchableOpacity>
+        )}
       </View>
     )
   }
