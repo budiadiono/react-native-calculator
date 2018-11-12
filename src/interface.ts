@@ -98,6 +98,12 @@ export interface CalculatorCommonProps {
    * Text change event.
    */
   onTextChange?: (text: string) => void
+
+
+  /**
+  * Digit align display
+  */
+  displayTextAlign?: string;
 }
 
 export const DefaultCommonProps: Partial<CalculatorCommonProps> = {
@@ -115,5 +121,6 @@ export const DefaultCommonProps: Partial<CalculatorCommonProps> = {
   displayColor: '#000000',
   borderColor: '#52525B',
   fontSize: 18,
-  value: 0
+  value: 0,
+  displayTextAlign: 'left',
 }
