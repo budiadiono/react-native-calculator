@@ -103,7 +103,7 @@ export interface CalculatorCommonProps {
   /**
    * Digit align display
    */
-  displayTextAlign?: string;
+  displayTextAlign?: "auto" | "left" | "right" | "center" | "justify";
 }
 
 export const DefaultCommonProps: Partial<CalculatorCommonProps> = {
