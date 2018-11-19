@@ -101,8 +101,8 @@ export interface CalculatorCommonProps {
 
 
   /**
-  * Digit align display
-  */
+   * Digit align display
+   */
   displayTextAlign?: string;
 }
 
