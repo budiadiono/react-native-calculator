@@ -162,7 +162,8 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       fontSize,
       width,
       hasAcceptButton,
-      hideDisplay
+      hideDisplay,
+      displayTextAlign,
     } = this.props
 
     const done = this.state.done && hasAcceptButton
@@ -192,7 +193,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
               ref={e => {
                 this.display = e as Display
               }}
-              style={{ color: displayColor }}
+              style={{ color: displayColor, textAlign: displayTextAlign }}
             />
           </View>
         )}
