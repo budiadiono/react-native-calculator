@@ -124,7 +124,7 @@ All props in [common props](#common-props) and...
 | displayHeight                | number                                             | (auto)        | Digit display container height.    |
 | keyboardHeight               | number                                             | (auto)        | Keyboard container height.         |
 | onTextChange                 | (text: string) => void                             |               | Text change event.                 |
-| displayTextAlign             | `"auto" | "left" | "right" | "center" | "justify"` | `"left"`      | Digit align display                |
+| displayTextAlign             | `"auto" / "left" / "right" / "center" / "justify"` | `"left"`      | Digit align display                |
 
 ## License
 
