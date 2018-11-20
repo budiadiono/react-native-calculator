@@ -164,6 +164,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       hasAcceptButton,
       hideDisplay,
       displayTextAlign,
+      noDecimal
     } = this.props
 
     const done = this.state.done && hasAcceptButton
@@ -229,11 +230,19 @@ export class Calculator extends React.Component<CalculatorProps, State> {
               {this.renderNumberButton(btnSize, '2')}
               {this.renderNumberButton(btnSize, '3')}
             </View>
-            <View style={Styles.row}>
-              {this.renderNumberButton(btnSize, '0', true)}
-              {this.renderNumberButton(btnSize, '000')}
-              {this.renderNumberButton(btnSize, decimalSeparator as string)}
-            </View>
+            {noDecimal ? (
+              <View style={Styles.row}>
+                {this.renderNumberButton(btnSize, '0', true)}
+                {this.renderNumberButton(btnSize, '000', false, 2)}
+              </View>
+            ) : (
+              <View style={Styles.row}>
+                {this.renderNumberButton(btnSize, '0', true)}
+                {this.renderNumberButton(btnSize, '000')}
+                {!noDecimal &&
+                  this.renderNumberButton(btnSize, decimalSeparator as string)}
+              </View>
+            )}
           </View>
           <Button
             style={[
@@ -262,7 +271,8 @@ export class Calculator extends React.Component<CalculatorProps, State> {
   renderNumberButton(
     btnSize: ButtonSize,
     value: string,
-    mostLeft: boolean = false
+    mostLeft: boolean = false,
+    scaleX: number = 1
   ) {
     const {
       decimalSeparator,
@@ -280,7 +290,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
             borderColor,
             backgroundColor: numericButtonBackgroundColor,
             borderLeftWidth: mostLeft ? 1 : 0,
-            width: btnSize.width,
+            width: btnSize.width * scaleX,
             height: btnSize.height
           }
         ]}

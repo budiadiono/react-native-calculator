@@ -99,11 +99,15 @@ export interface CalculatorCommonProps {
    */
   onTextChange?: (text: string) => void
 
+  /**
+   * Digit align display.
+   */
+  displayTextAlign?: 'auto' | 'left' | 'right' | 'center' | 'justify'
 
   /**
-   * Digit align display
+   * Hide decimal separator button to disable decimal value.
    */
-  displayTextAlign?: "auto" | "left" | "right" | "center" | "justify";
+  noDecimal?: boolean
 }
 
 export const DefaultCommonProps: Partial<CalculatorCommonProps> = {
@@ -122,5 +126,5 @@ export const DefaultCommonProps: Partial<CalculatorCommonProps> = {
   borderColor: '#52525B',
   fontSize: 18,
   value: 0,
-  displayTextAlign: 'left',
+  displayTextAlign: 'left'
 }
