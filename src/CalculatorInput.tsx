@@ -199,6 +199,8 @@ export class CalculatorInput extends React.Component<
 
     const height = this.props.height || dimension.height - dimension.height / 3
     const width = this.props.width || dimension.width
+    // Without this the layout will break on some android devices (e.g. galaxy tab)
+    const style = { height };
 
     return (
       <Modal
@@ -238,6 +240,7 @@ export class CalculatorInput extends React.Component<
               value={this.state.value}
               height={height}
               width={width}
+              style={style}
             />
           </View>
         </TouchableWithoutFeedback>

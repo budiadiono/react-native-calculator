@@ -93,6 +93,11 @@ exports[`renders calculator input correctly 1`] = `
           numericButtonColor="#aaaaaa"
           onAccept={[Function]}
           prefix=""
+          style={
+            Object {
+              "height": 889.3333333333333,
+            }
+          }
           suffix=""
           thousandSeparator=","
           value={0}
