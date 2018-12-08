@@ -326,9 +326,9 @@ export class Calculator extends React.Component<CalculatorProps, State> {
               return
             }
             stack.trailing = decimalSeparator
-          } else if (value === '0') {
+          } else if (value === '0' || value === '000') {
             if (stack.value.indexOf(decimalSeparator as string) > -1 || stack.trailing !== '') {
-              stack.trailing = stack.trailing + '0'
+              stack.trailing = stack.trailing + value
               value = ''
             }
           } else {
