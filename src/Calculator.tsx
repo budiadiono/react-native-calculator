@@ -33,6 +33,11 @@ export interface CalculatorProps extends CalculatorCommonProps {
   hasAcceptButton?: boolean
 
   /**
+   * How many decimal places to round the value
+   */
+  roundTo?: number
+
+  /**
    * Container style.
    */
   style?: StyleProp<ViewStyle>
@@ -63,6 +68,7 @@ interface CalcStack {
   value: string
   kind: StackKindEnum
   text: string
+  trailing: string
 }
 
 interface ButtonSize {
@@ -304,15 +310,13 @@ export class Calculator extends React.Component<CalculatorProps, State> {
             stack = {
               kind: StackKindEnum.NUMBER,
               value: '',
-              text: ''
+              text: '',
+              trailing: ''
             }
             this.stacks.push(stack)
           }
 
           // evaluating decimal separator
-          let sepVal = ''
-          let sepText = ''
-
           if (value === decimalSeparator) {
             if (
               stack.value.indexOf(decimalSeparator) > -1 ||
@@ -321,16 +325,25 @@ export class Calculator extends React.Component<CalculatorProps, State> {
             ) {
               return
             }
-            sepVal = '.'
-            sepText = decimalSeparator
+            stack.trailing = decimalSeparator
+          } else if (value === '0' || value === '000') {
+            if (stack.value.indexOf(decimalSeparator as string) > -1 || stack.trailing !== '') {
+              stack.trailing = stack.trailing + value
+              value = ''
+            }
+          } else {
+            if (stack.trailing) {
+              value = stack.trailing + value
+              stack.trailing = ''
+            }
           }
 
           // get editing value
-          const val = parseFloat(stack.value + value)
+          const val = parseFloat((stack.value + value).replace(decimalSeparator as string, '.'))
 
           // modify current stack
-          stack.value = val.toString() + sepVal
-          stack.text = this.format(val) + sepText
+          stack.value = val.toString()
+          stack.text = this.format(val)
           this.setText()
         }}
       />
@@ -396,7 +409,8 @@ export class Calculator extends React.Component<CalculatorProps, State> {
                 if (stack.kind === StackKindEnum.SIGN) {
                   this.popStack()
                 } else {
-                  let { value } = stack
+                  let { value, trailing } = stack
+                  const { decimalSeparator } = this.props;
 
                   if (
                     !value ||
@@ -413,19 +427,32 @@ export class Calculator extends React.Component<CalculatorProps, State> {
                     return
                   }
 
-                  value = value.slice(0, value.length - 1)
-                  if (!value) {
-                    this.popStack()
+                  if (trailing !== '') {
+                    stack.trailing = trailing.slice(0, trailing.length - 1)
                   } else {
-                    stack.value = value
+                    if (value.length <= 1) {
+                      this.popStack()
+                    } else {
+                      value = value.slice(0, value.length - 1)
 
-                    // keep decimal separator displayed
-                    let sep = ''
-                    if (value[value.length - 1] === '.') {
-                      sep = this.props.decimalSeparator as string
+                      while (value.slice(-1) === '0') {
+                        value = value.slice(0, value.length - 1)
+                        trailing = trailing + '0'
+                      }
+
+                       // keep decimal separator displayed
+                      let sep = ''
+                      if (value[value.length - 1] === '.') {
+                        sep = this.props.decimalSeparator as string
+                      }
+
+                      // get editing value
+                      const val = parseFloat(value.replace(decimalSeparator as string, '.'))
+
+                      stack.value = val.toString()
+                      stack.text = this.format(val)
+                      stack.trailing = sep + trailing
                     }
-
-                    stack.text = this.format(parseFloat(value)) + sep
                   }
                 }
               }
@@ -439,7 +466,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
   }
 
   calculate() {
-    const { onCalc, onAccept, hasAcceptButton } = this.props
+    const { onCalc, onAccept, hasAcceptButton, roundTo = 2 } = this.props
 
     if (!this.stacks.length) {
       this.clear()
@@ -457,14 +484,15 @@ export class Calculator extends React.Component<CalculatorProps, State> {
 
     // tslint:disable-next-line:no-eval
     const num = eval(this.stacks.map(x => x.value).join('') || '0')
-    const value = Math.round(num * 100) / 100
+    const value = Math.round(num * (10 ** roundTo)) / (10 ** roundTo)
     const text = this.format(value)
 
     this.stacks = [
       {
         kind: StackKindEnum.NUMBER,
         value: value.toString(),
-        text
+        text,
+        trailing: ''
       }
     ]
 
@@ -491,7 +519,8 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       {
         kind: StackKindEnum.NUMBER,
         value: value.toString(),
-        text: this.format(value)
+        text: this.format(value),
+        trailing: ''
       }
     ]
     this.setText()
@@ -517,7 +546,8 @@ export class Calculator extends React.Component<CalculatorProps, State> {
         this.stacks.push({
           kind: StackKindEnum.SIGN,
           text: sign,
-          value: sign
+          value: sign,
+          trailing: ''
         })
       }
     }
@@ -525,7 +555,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
   }
 
   setText(done: boolean = false, callback?: () => void) {
-    const text = this.stacks.map(s => s.text).join(' ')
+    const text = this.stacks.map(s => s.text + (s.trailing || '')).join(' ')
     if (!done) {
       done = this.stacks.length === 1
     }
