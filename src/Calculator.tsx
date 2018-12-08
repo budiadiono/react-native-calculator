@@ -33,11 +33,6 @@ export interface CalculatorProps extends CalculatorCommonProps {
   hasAcceptButton?: boolean
 
   /**
-   * How many decimal places to round the value
-   */
-  roundTo?: number
-
-  /**
    * Container style.
    */
   style?: StyleProp<ViewStyle>
@@ -327,7 +322,10 @@ export class Calculator extends React.Component<CalculatorProps, State> {
             }
             stack.trailing = decimalSeparator
           } else if (value === '0' || value === '000') {
-            if (stack.value.indexOf(decimalSeparator as string) > -1 || stack.trailing !== '') {
+            if (
+              stack.value.indexOf(decimalSeparator as string) > -1 ||
+              stack.trailing !== ''
+            ) {
               stack.trailing = stack.trailing + value
               value = ''
             }
@@ -339,7 +337,9 @@ export class Calculator extends React.Component<CalculatorProps, State> {
           }
 
           // get editing value
-          const val = parseFloat((stack.value + value).replace(decimalSeparator as string, '.'))
+          const val = parseFloat(
+            (stack.value + value).replace(decimalSeparator as string, '.')
+          )
 
           // modify current stack
           stack.value = val.toString()
@@ -410,7 +410,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
                   this.popStack()
                 } else {
                   let { value, trailing } = stack
-                  const { decimalSeparator } = this.props;
+                  const { decimalSeparator } = this.props
 
                   if (
                     !value ||
@@ -440,14 +440,16 @@ export class Calculator extends React.Component<CalculatorProps, State> {
                         trailing = trailing + '0'
                       }
 
-                       // keep decimal separator displayed
+                      // keep decimal separator displayed
                       let sep = ''
                       if (value[value.length - 1] === '.') {
                         sep = this.props.decimalSeparator as string
                       }
 
                       // get editing value
-                      const val = parseFloat(value.replace(decimalSeparator as string, '.'))
+                      const val = parseFloat(
+                        value.replace(decimalSeparator as string, '.')
+                      )
 
                       stack.value = val.toString()
                       stack.text = this.format(val)
@@ -484,7 +486,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
 
     // tslint:disable-next-line:no-eval
     const num = eval(this.stacks.map(x => x.value).join('') || '0')
-    const value = Math.round(num * (10 ** roundTo)) / (10 ** roundTo)
+    const value = Math.round(num * 10 ** roundTo) / 10 ** roundTo
     const text = this.format(value)
 
     this.stacks = [

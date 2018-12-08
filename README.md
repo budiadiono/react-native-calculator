@@ -126,6 +126,7 @@ All props in [common props](#common-props) and...
 | onTextChange                 | (text: string) => void                             |               | Text change event.                                      |
 | displayTextAlign             | `"auto" / "left" / "right" / "center" / "justify"` | `"left"`      | Digit align display.                                    |
 | noDecimal                    | boolean                                            | false         | Hide decimal separator button to disable decimal value. |
+| roundTo                      | number                                             | 2             | How many decimal places to round the value              |
 
 ## License
 

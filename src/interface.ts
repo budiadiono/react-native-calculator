@@ -108,6 +108,11 @@ export interface CalculatorCommonProps {
    * Hide decimal separator button to disable decimal value.
    */
   noDecimal?: boolean
+
+  /**
+   * How many decimal places to round the value
+   */
+  roundTo?: number
 }
 
 export const DefaultCommonProps: Partial<CalculatorCommonProps> = {
