@@ -75,6 +75,7 @@ interface ButtonSize {
 export class Calculator extends React.Component<CalculatorProps, State> {
   static defaultProps: Partial<CalculatorProps> = DefaultCommonProps
 
+  calculated: boolean = false
   stacks: CalcStack[] = []
   display?: Display
 
@@ -298,6 +299,19 @@ export class Calculator extends React.Component<CalculatorProps, State> {
         textStyle={{ color: numericButtonColor, fontSize }}
         text={value}
         onPress={() => {
+          if (this.calculated) {
+            // clear answer replace with entered number
+            this.calculated = false
+            this.stacks = [
+              {
+                kind: StackKindEnum.NUMBER,
+                value: '',
+                text: '',
+                trailing: ''
+              }
+            ]
+          }
+
           let stack = this.stacks[this.stacks.length - 1]
 
           // add new stack if current tag is a sign
@@ -378,6 +392,11 @@ export class Calculator extends React.Component<CalculatorProps, State> {
         textStyle={{ color: actionButtonColor, fontSize }}
         text={value}
         onPress={() => {
+          if (this.calculated) {
+            // continue to use this answer
+            this.calculated = false
+          }
+
           // tslint:disable-next-line:switch-default
           switch (action) {
             case ActionEnum.CLEAR:
@@ -506,6 +525,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       if (hasAcceptButton && onAccept && this.state.done) {
         onAccept(value, text)
       }
+      this.calculated = true
     })
   }
 
