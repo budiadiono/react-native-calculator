@@ -238,12 +238,12 @@ export class Calculator extends React.Component<CalculatorProps, State> {
                 {this.renderNumberButton(btnSize, '000', false, 2)}
               </View>
             ) : (
-                <View style={Styles.row}>
-                  {this.renderNumberButton(btnSize, '0', true)}
-                  {this.renderNumberButton(btnSize, '000')}
-                  {!noDecimal &&
-                    this.renderNumberButton(btnSize, decimalSeparator as string)}
-                </View>
+              <View style={Styles.row}>
+                {this.renderNumberButton(btnSize, '0', true)}
+                {this.renderNumberButton(btnSize, '000')}
+                {!noDecimal &&
+                  this.renderNumberButton(btnSize, decimalSeparator as string)}
+              </View>
               )}
           </View>
           <Button
@@ -324,20 +324,12 @@ export class Calculator extends React.Component<CalculatorProps, State> {
             }
             this.stacks.push(stack)
           }
-          console.log(this.stacks)
+
           // evaluating decimal separator
           if (value === decimalSeparator) {
-            console.log(stack, "stack")
-            console.log(stack.trailing as string, "trailing")
-            console.log(stack.value as string, "value")
-            console.log(stack.text as string, "text")
-            if(!stack.value){
-              stack.text = "0";
+            if(!stack.value && !stack.text){
+              stack.text = "0"
               stack.value = "0"
-              console.log('here2')
-            }
-            if(stack.trailing == "."){
-              console.log('here')
             }
             if (
               stack.value.indexOf(decimalSeparator) > -1 ||
@@ -348,7 +340,6 @@ export class Calculator extends React.Component<CalculatorProps, State> {
             }
             stack.trailing = decimalSeparator
           } else if (value === '0' || value === '000') {
-            console.log('decimal 1')
             if (
               stack.value.indexOf(decimalSeparator as string) > -1 ||
               stack.trailing !== ''
@@ -357,7 +348,6 @@ export class Calculator extends React.Component<CalculatorProps, State> {
               value = ''
             }
           } else {
-            console.log('decimal 2')
             if (stack.trailing) {
               value = stack.trailing + value
               stack.trailing = ''
@@ -372,7 +362,6 @@ export class Calculator extends React.Component<CalculatorProps, State> {
           // modify current stack
           stack.value = val.toString()
           stack.text = this.format(val)
-          console.log(stack, "final stack")
           this.setText()
         }}
       />
