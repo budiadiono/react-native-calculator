@@ -316,7 +316,6 @@ export class Calculator extends React.Component<CalculatorProps, State> {
 
           // add new stack if current tag is a sign
           if (stack.kind === StackKindEnum.SIGN) {
-            console.log('stack')
             stack = {
               kind: StackKindEnum.NUMBER,
               value: '',
@@ -325,11 +324,14 @@ export class Calculator extends React.Component<CalculatorProps, State> {
             }
             this.stacks.push(stack)
           }
-
+          console.log(this.stacks)
           // evaluating decimal separator
           if (value === decimalSeparator) {
-            console.log(stack)
-            if(stack.value == "NaN"){
+            console.log(stack, "stack")
+            console.log(stack.trailing, "trailing")
+            console.log(stack.value, "value")
+            console.log(stack.text, "text")
+            if(!!stack.value){
               stack.text = "0";
               stack.value = "0"
               console.log('here2')
@@ -370,6 +372,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
           // modify current stack
           stack.value = val.toString()
           stack.text = this.format(val)
+          console.log(stack, "final stack")
           this.setText()
         }}
       />
