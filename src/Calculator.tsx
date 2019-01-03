@@ -329,6 +329,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
           // evaluating decimal separator
           if (value === decimalSeparator) {
             console.log('decimal')
+            console.log(stack)
             if (
               stack.value.indexOf(decimalSeparator) > -1 ||
               stack.value === 'Infinity' ||
