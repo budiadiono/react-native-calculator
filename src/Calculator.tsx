@@ -244,7 +244,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
                 {!noDecimal &&
                   this.renderNumberButton(btnSize, decimalSeparator as string)}
               </View>
-              )}
+            )}
           </View>
           <Button
             style={[
