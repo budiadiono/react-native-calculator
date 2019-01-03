@@ -238,13 +238,13 @@ export class Calculator extends React.Component<CalculatorProps, State> {
                 {this.renderNumberButton(btnSize, '000', false, 2)}
               </View>
             ) : (
-              <View style={Styles.row}>
-                {this.renderNumberButton(btnSize, '0', true)}
-                {this.renderNumberButton(btnSize, '000')}
-                {!noDecimal &&
-                  this.renderNumberButton(btnSize, decimalSeparator as string)}
-              </View>
-            )}
+                <View style={Styles.row}>
+                  {this.renderNumberButton(btnSize, '0', true)}
+                  {this.renderNumberButton(btnSize, '000')}
+                  {!noDecimal &&
+                    this.renderNumberButton(btnSize, decimalSeparator as string)}
+                </View>
+              )}
           </View>
           <Button
             style={[
@@ -316,6 +316,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
 
           // add new stack if current tag is a sign
           if (stack.kind === StackKindEnum.SIGN) {
+            console.log('stack')
             stack = {
               kind: StackKindEnum.NUMBER,
               value: '',
@@ -327,6 +328,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
 
           // evaluating decimal separator
           if (value === decimalSeparator) {
+            console.log('decimal')
             if (
               stack.value.indexOf(decimalSeparator) > -1 ||
               stack.value === 'Infinity' ||
@@ -336,6 +338,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
             }
             stack.trailing = decimalSeparator
           } else if (value === '0' || value === '000') {
+            console.log('decimal 1')
             if (
               stack.value.indexOf(decimalSeparator as string) > -1 ||
               stack.trailing !== ''
@@ -344,6 +347,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
               value = ''
             }
           } else {
+            console.log('decimal 2')
             if (stack.trailing) {
               value = stack.trailing + value
               stack.trailing = ''
