@@ -464,10 +464,10 @@ export class Calculator extends React.Component<CalculatorProps, State> {
                       }
 
                       // keep decimal separator displayed
-                      // let sep = ''
-                      // if (value[value.length - 1] === '.') {
-                      //   sep = this.props.decimalSeparator as string
-                      // }
+                      let sep = ''
+                      if (value[value.length - 1] === '.') {
+                        sep = this.props.decimalSeparator as string
+                      }
 
                       // get editing value
                       const val = parseFloat(
