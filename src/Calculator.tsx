@@ -451,7 +451,6 @@ export class Calculator extends React.Component<CalculatorProps, State> {
                   }
 
                   if (trailing !== '') {
-                    console.log(trailing)
                     stack.trailing = trailing.slice(0, trailing.length - 1)
                   } else {
                     if (value.length <= 1) {
@@ -461,23 +460,20 @@ export class Calculator extends React.Component<CalculatorProps, State> {
 
                       while (value.slice(-1) === '0') {
                         value = value.slice(0, value.length - 1)
-                        console.log(value)
                         trailing = trailing + '0'
-                        console.log(trailing)
                       }
 
                       // keep decimal separator displayed
-                      let sep = ''
-                      if (value[value.length - 1] === '.') {
-                        console.log('here')
-                        sep = this.props.decimalSeparator as string
-                      }
+                      // let sep = ''
+                      // if (value[value.length - 1] === '.') {
+                      //   sep = this.props.decimalSeparator as string
+                      // }
 
                       // get editing value
                       const val = parseFloat(
                         value.replace(decimalSeparator as string, '.')
                       )
-                      console.log(stack.value)
+
                       stack.value = val.toString()
                       stack.text = this.format(val)
                       stack.trailing = sep + trailing
