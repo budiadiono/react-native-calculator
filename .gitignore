@@ -4,3 +4,4 @@ tmp/
 typings/
 npm-debug.*
 yarn-error.*
+example/.expo/*
