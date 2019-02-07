@@ -446,7 +446,7 @@ export class Calculator extends React.Component<CalculatorProps, State> {
                     return
                   }
 
-                  if (value === '0') {
+                  if (value === '0' && !trailing) {
                     return
                   }
 
