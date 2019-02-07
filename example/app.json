@@ -4,7 +4,7 @@
     "description": "This project is really great.",
     "slug": "react-native-calculator-example",
     "privacy": "public",
-    "sdkVersion": "27.0.0",
+    "sdkVersion": "32.0.0",
     "platforms": ["ios", "android"],
     "version": "0.0.1",
     "icon": "./assets/icon.png",

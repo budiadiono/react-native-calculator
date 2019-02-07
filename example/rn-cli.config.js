@@ -1,22 +1,14 @@
 const path = require('path')
-const blacklist = require('metro/src/blacklist')
-const pak = require('../package.json')
-const escape = require('escape-string-regexp')
-
-const peerDependencies = Object.keys(pak.peerDependencies)
+const root = process.cwd()
 
 module.exports = {
-  getProjectRoots() {
-    return [__dirname, path.resolve(__dirname, '..')]
+  resolver: {
+    extraNodeModules: new Proxy(
+      {},
+      {
+        get: (target, name) => path.join(root, `node_modules/${name}`)
+      }
+    )
   },
-  getProvidesModuleNodeModules() {
-    return [...peerDependencies]
-  },
-  getBlacklistRE() {
-    return blacklist([
-      new RegExp(
-        `^${escape(path.resolve(__dirname, '..', 'node_modules'))}\\/.*$`
-      )
-    ])
-  }
+  watchFolders: [path.join(root, '../dist')]
 }
