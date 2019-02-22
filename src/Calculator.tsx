@@ -555,6 +555,10 @@ export class Calculator extends React.Component<CalculatorProps, State> {
   setSign(sign: string) {
     const stack = this.stacks[this.stacks.length - 1]
     if (stack.kind === StackKindEnum.SIGN) {
+      // only '-' sign allowed for first input
+      if (this.stacks.length <= 1 && sign !== '-') {
+        return
+      }
       stack.text = sign
       stack.value = sign
     } else {
