@@ -327,9 +327,9 @@ export class Calculator extends React.Component<CalculatorProps, State> {
 
           // evaluating decimal separator
           if (value === decimalSeparator) {
-            if(!stack.value && !stack.text){
-              stack.text = "0"
-              stack.value = "0"
+            if (!stack.value && !stack.text) {
+              stack.text = '0'
+              stack.value = '0'
             }
             if (
               stack.value.indexOf(decimalSeparator) > -1 ||
@@ -565,7 +565,9 @@ export class Calculator extends React.Component<CalculatorProps, State> {
       ) {
         return
       }
+
       if (sign === '-' && this.stacks.length === 1 && stack.value === '0') {
+        stack.kind = StackKindEnum.SIGN
         stack.text = sign
         stack.value = sign
       } else {
