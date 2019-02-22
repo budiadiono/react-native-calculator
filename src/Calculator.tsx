@@ -467,6 +467,10 @@ export class Calculator extends React.Component<CalculatorProps, State> {
                       let sep = ''
                       if (value[value.length - 1] === '.') {
                         sep = this.props.decimalSeparator as string
+                      } else {
+                        // skip trailing when no decimal separator found
+                        value += trailing
+                        trailing = ''
                       }
 
                       // get editing value
